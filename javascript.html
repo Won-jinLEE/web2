@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset = utf-8">
+  <title>tttt</title>
+ </head>
+ <body>
+   ID :
+   <input type="text" id="alertText1">
+   <br>
+   PW :
+   <input type="text" id="alertText2">
+   <br>
+   <input type="button" id="alertBtn" value="버튼">
+ </body>
+ <script>
+//    for(alert(1) ; part2() ; alert(4)) {
+// 	console.log('3-1');
+//   console.log('3-2');
+//   console.log('3-3');
+//   console.log('3-4');
+// }
+// function part2() {
+//   console.log('2-1');
+//   console.log('2-2');
+//   console.log('2-3');
+//   console.log('2-4');
+//   return true;
+// }
+// j= 10;
+// for (let i = 10; j < 10000; i++) {
+//   j =  j*10;
+//   console.log("i값 : "+i);
+//   console.log("j값 : "+j);
+// }
+   document.getElementById("alertBtn").addEventListener('click', function(){
+     if (document.getElementById("alertText1").value==1234 && document.getElementById("alertText2").value==1234) {
+       location.href='http://localhost/table';
+     }else {
+       alert("로그인 실패");
+     }
+       console.log("ID : "+document.getElementById("alertText1").value);
+       console.log("PW : "+document.getElementById("alertText2").value);
+   });
+ </script>
+</html>
