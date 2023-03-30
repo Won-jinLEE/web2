@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset = utf-8">
+  <title>test2</title>
+</head>
+<body>
+  1번 수 : <input type="text" id="num1">
+  <br>
+  2번 수 : <input type="text" id="num2">
+  <br>
+  <input type="button" value="합산" id="resultBtn">
+</body>
+<script>
+  document.getElementById('num1').addEventListener("keyup", function(e) {
+    if (e.keyCode === 13) {document.getElementById("resultBtn").click();
+  }
+});
+document.getElementById('num2').addEventListener("keyup", function(e) {
+  if (e.keyCode === 13) {document.getElementById("resultBtn").click();
+}
+});
+document.getElementById('resultBtn').addEventListener("click", function(e) {
+  let num1 = Number(document.getElementById("num1").value);
+  let num2 = Number(document.getElementById("num2").value);
+  let num3 = num1+num2;
+  console.log("합산한 수는 : "+ num3)
+  if (num3>=10) {
+    console.log("10이상입니다.")
+  }else {
+    console.log("10미만입니다.")
+  }
+});
+</script>
+</html>

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset = utf-8">
+  <title>대머리</title>
+</head>
+<body>
+  <center>
+    <h1>문어사냥</h1>
+  </center>
+  <br>
+  <center>
+    <img src="https://image.chosun.com/sitedata/image/202006/09/2020060902947_0.png"style="width:320px;height:250px">
+  </center>
+  <br>
+  <center>
+    문어의 HP : <input type="text" value="50" id="octopusHP">
+  </center>
+  <br>
+  <center>
+    플레이어의 HP : <input type="text" value="25" id="playerHP">
+  </center>
+  <br>
+  <center>
+    <input type="button" value="공격" id="at">
+    <input type="button" value="방어&회복" id="df">
+    <input type="button" value="회피" id="ag">
+  </center>
+</body>
+<script>
+  let octopusHP = Number(document.getElementById("octopusHP").value);
+  let playerHP = Number(document.getElementById("playerHP").value);
+  let potionCount = 5;
+  document.getElementById('at').addEventListener("click", function(e) {
+    let playerAT = Math.floor(Math.random() * 10)+1;
+    let octopusAT = Math.floor(Math.random() * 8)+1;
+    let criticalRate = Math.random();
+    if (criticalRate<0.3) {
+      octopusHP = (octopusHP - (playerAT*2))
+      playerHP = (playerHP - octopusAT)
+      console.log("플레이어의 크리티컬 공격 ("+(playerAT*2)+")의 데미지")
+      console.log("(문어의 현재 HP : "+octopusHP+")")
+      console.log("")
+      console.log("문어의 공격 ("+octopusAT+")의 데미지")
+      console.log("(플레이어의 현재 HP : "+playerHP+")")
+      console.log("")
+    }else {
+      octopusHP = (octopusHP - playerAT)
+      playerHP = (playerHP - octopusAT)
+      console.log("플레이어의 공격 ("+playerAT+")의 데미지")
+      console.log("(문어의 현재 HP : "+octopusHP+")")
+      console.log("")
+      console.log("문어의 공격 ("+octopusAT+")의 데미지")
+      console.log("(플레이어의 현재 HP : "+playerHP+")")
+      console.log("")
+    }
+    if(octopusHP<=0&&playerHP<=0){
+      if (octopusHP<playerHP) {
+        location.href='http://localhost/win';
+      }else if (octopusHP>playerHP) {
+        location.href='http://localhost/defeat';
+      }
+    }
+    else if(octopusHP<=0){
+      location.href='http://localhost/win';
+    }else if(playerHP<=0){
+      location.href='http://localhost/defeat';
+    }
+  });
+  document.getElementById('df').addEventListener("click", function(e) {
+    let octopusAT = Math.floor(Math.random() * 4)+1;
+    let potion = Math.floor(Math.random() * 4)+1;
+    playerHP = (playerHP - octopusAT)
+    console.log("문어의 공격 ("+octopusAT+") 데미지")
+    console.log("(플레이어의 현재 HP : "+playerHP+")")
+    console.log("")
+    if(octopusHP<=0&&playerHP<=0){
+      if (octopusHP<playerHP) {
+        location.href='http://localhost/win';
+      }else if (octopusHP>playerHP) {
+        location.href='http://localhost/defeat';
+      }
+    }
+    else if(octopusHP<=0){
+      location.href='http://localhost/win';
+    }else if(playerHP<=0){
+      location.href='http://localhost/defeat';
+    }
+    if (potionCount>0) {
+      playerHP = (playerHP + potion)
+      console.log("플레이어는 포션을 마셔서 HP를 ("+potion+")회복하였다!")
+      console.log("(플레이어의 현재 HP : "+playerHP+")")
+      potionCount = potionCount -1;
+      console.log("(남아있는 포션의 갯수 : "+potionCount+")")
+      console.log("")
+    }else {
+      console.log("포션이 남아있지 않아 회복을 하지 못했다.")
+      console.log("")
+    }
+  });
+  document.getElementById('ag').addEventListener("click", function(e) {
+    let playerAT = Math.floor(Math.random() * 6)+10;
+    let octopusAT = Math.floor(Math.random() * 8)+1;
+    let playerAG = Math.random();
+    if (playerAG>0.2) {
+      playerHP = (playerHP - octopusAT)
+      console.log("회피실패!!문어의 공격 ("+octopusAT+")의 데미지")
+      console.log("(플레이어의 현재 HP : "+playerHP+")")
+      console.log("")
+    }else if(playerAG<0.2){
+      let criticalRate = Math.random();
+      if (criticalRate<0.3){
+      octopusHP = (octopusHP - (playerAT*3))
+      console.log("플레이어의 HP는 문어의 공격을 회피하고 급소를 정확하게 공격해 ("+(playerAT*3)+")의 데미지를 주었다!(문어의 현재 HP : "+octopusHP+")")
+      console.log("")}
+      else {
+      octopusHP = (octopusHP - playerAT)
+      console.log("플레이어의 HP는 문어의 공격을 회피하고 급소를 공격해 ("+playerAT+")의 데미지를 주었다!(문어의 현재 HP : "+octopusHP+")")
+      console.log("")
+      }
+    }
+    if(octopusHP<=0&&playerHP<=0){
+      if (octopusHP<playerHP) {
+        location.href='http://localhost/win';
+      }else if (octopusHP>playerHP) {
+        location.href='http://localhost/defeat';
+      }
+    }
+    else if(octopusHP<=0){
+      location.href='http://localhost/win';
+    }else if(playerHP<=0){
+      location.href='http://localhost/defeat';
+    }
+  });
+</script>
+</html>
