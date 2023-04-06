@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset = utf-8">
+  <title></title>
+ </head>
+ <body>
+   <div>1</div>
+   <div>2</div>
+   <div id="helloDiv">3</div>
+   <span>4</span>
+   <span>5</span>
+   <span>6</span>
+   <input type="button" value="로그인" id="btn">
+ </body>
+ <script>
+   var button = document.getElementById("btn");
+   button.addEventListener('click', function(){
+     document.getElementById("helloDiv").innerHTML ="";
+     for(let i = 1 ; i <= 9; i++){
+      document.getElementById("helloDiv").innerHTML += i;
+     }
+     for(let i = 1 ; i <= 9; i++){
+      document.getElementById("helloDiv").innerHTML += i;
+     }
+     for(let i = 1 ; i <= 9; i++){
+      document.getElementById("helloDiv").innerHTML += i;
+     }
+   });
+ </script>
+</html>

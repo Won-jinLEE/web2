@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset = utf-8">
+  <title></title>
+</head>
+<body>
+  <div id="asdf"></div>
+</body>
+<script>
+  // let arr1 = [];
+  // let arr2 = [];
+  // let arr3 = [];
+  // let arr4 = [];
+  // for (let i = 0; i<11; i++){
+  //   if(i<10){
+  //     arr1[i] = i+1;
+  //   }
+  //   arr2[i] = i*2;
+  //   if(i<7){
+  //     arr3[i] = `"abc${i+1}"`;
+  //   }
+  //   if(i<9){
+  //     arr4[i] = i*3+1;
+  //   }
+  // }
+  // document.getElementById("asdf").innerHTML += `첫번째 배열은 ${arr1}<br>`;
+  // document.getElementById("asdf").innerHTML += `두번째 배열은 ${arr2}<br>`;
+  // document.getElementById("asdf").innerHTML += `세번째 배열은 ${arr3}<br>`;
+  // document.getElementById("asdf").innerHTML += `네번째 배열은 ${arr4}<br>`;
+  // console.log(arr1);
+  // console.log(arr2);
+  // console.log(arr3);
+  // console.log(arr4);
+  // let tmp = [];
+  // var boo = false;
+  // for (let i = 99999; i <100100; i++){
+  //   tmp[i]=i+1;
+  //   let inputValue = tmp[i].toString();
+  //   let valueLen = inputValue.length;
+  //   for (let j = valueLen-1; j>=0; j--){
+  //     if(inputValue[j]==3||inputValue[j]==6||inputValue[j]==9){
+  //     boo = true;
+  //     break;
+  //     }
+  //   }
+  //   if(boo){
+  //     document.getElementById("inputValue").innerHTML += `${inputValue}짝<br>`
+  //     console.log(`${inputValue}짝`);
+  //   }
+  //   else {
+  //     document.getElementById("asdf").innerHTML += `${inputValue}<br>`
+  //     console.log(inputValue);
+  //   }
+  //   boo = false;
+  // }
+  for(let i=1; i<=1000; i++){
+    num = i+"";
+    let count = 0;
+    for(let j=0; j<num.length; j++){
+      if(num[j]%3==0 && num[j]!=0){
+        count = count+1;
+      }
+    }if (count>0) {
+      // document.getElementById("inputValue").innerHTML += `짝*${count}`
+      console.log("짝".repeat(count));
+    }else {
+      // document.getElementById("inputValue").innerHTML += `${num}<br>`
+      console.log(num);
+    }
+  }
+</script>
+</html>
