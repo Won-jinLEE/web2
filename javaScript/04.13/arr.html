@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset = utf-8">
+  <title></title>
+ </head>
+ <body>
+   arr
+ </body>
+ <script>
+
+   let arr1 = [];
+   let arr2 = [];
+   let arr3 = [];
+   let arr4 = [];
+
+   for (let i = 0; i < 5; i++) {
+     arr1[i] = [];
+     for (let j = 0; j < 5; j++) {
+       arr1[i][j] = (i*5)+(j+1);
+     }
+   }
+   console.log(arr1);
+
+   for (let i = 0; i < 5; i++) {
+     arr2[i] = [];
+     for (let j = 0; j < 5; j++) {
+       arr2[i][j] = (i*15)+(j*3)+1;
+     }
+   }
+   console.log(arr2);
+
+   for (let i = 0; i < 5; i++) {
+     arr3[i] = [];
+     for (let j = 0; j < 5; j++) {
+       arr3[i][j] = (i)*(j);
+     }
+   }
+   console.log(arr3);
+
+   for (let i = 0; i < 5; i++) {
+     arr4[i] = [];
+     for (let j = 0; j < 5; j++) {
+       // arr4[i][j] = String(i)+String(j);
+       arr4[i][j] = `${i}${j}`;
+     }
+   }
+   console.log(arr4);
+
+ </script>
+</html>

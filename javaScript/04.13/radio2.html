@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset = utf-8">
+  <title></title>
+</head>
+<body>
+  1번
+  0  <input type="radio" name="firstRadio">
+  1  <input type="radio" name="firstRadio">
+  2  <input type="radio" name="firstRadio">
+  3  <input type="radio" name="firstRadio">
+  4  <input type="radio" name="firstRadio">
+  가중치 <input type="text" id="firstWeight">
+  <br>
+  2번
+  0  <input type="radio" name="secondRadio">
+  1  <input type="radio" name="secondRadio">
+  2  <input type="radio" name="secondRadio">
+  3  <input type="radio" name="secondRadio">
+  4  <input type="radio" name="secondRadio">
+  가중치 <input type="text" id="secondWeight">
+  <br>
+  3번
+  0  <input type="radio" name="thirdRadio">
+  1  <input type="radio" name="thirdRadio">
+  2  <input type="radio" name="thirdRadio">
+  3  <input type="radio" name="thirdRadio">
+  4  <input type="radio" name="thirdRadio">
+  가중치 <input type="text" id="thirdWeight">
+  <br>
+  <div id="printSpace"></div>
+  <br>
+  <input type="button" value="계산" id="radioCheckBtn">
+</body>
+<script>
+  let button = document.getElementById("radioCheckBtn");
+  button.addEventListener('click', function() {
+    let radioBtns1 = document.getElementsByName("firstRadio");
+    let radioBtns2 = document.getElementsByName("secondRadio");
+    let radioBtns3 = document.getElementsByName("thirdRadio");
+
+    let firstWeight = document.getElementById("firstWeight").value;
+    let secondWeight = document.getElementById("secondWeight").value;
+    let thirdWeight = document.getElementById("thirdWeight").value;
+
+    let firstRadioValue = 0;
+    let secondRadioValue = 0;
+    let thirdRadioValue = 0;
+
+    for (let i = 0; i < radioBtns1.length; i++) {
+      if(radioBtns1[i].checked){
+        firstRadioValue = i;
+      }
+    }
+
+    for (let i = 0; i < radioBtns2.length; i++) {
+      if(radioBtns2[i].checked){
+        secondRadioValue = i;
+      }
+    }
+
+    for (let i = 0; i < radioBtns3.length; i++) {
+      if(radioBtns3[i].checked){
+        thirdRadioValue = i;
+      }
+    }
+
+    let firstWeightradioValue = (firstWeight * firstRadioValue);
+    let secondWeightradioValue = (secondWeight * secondRadioValue);
+    let thridWeightradioValue = (thirdWeight * thirdRadioValue);
+    let result = firstWeightradioValue + secondWeightradioValue + thridWeightradioValue;
+    document.getElementById("printSpace").innerHTML =`${firstRadioValue}x${firstWeight} + ${secondRadioValue}x${secondWeight} + ${thirdRadioValue}x${thirdWeight} = ${result}`;
+  });
+
+</script>
+</html>
