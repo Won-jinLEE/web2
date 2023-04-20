@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset = utf-8">
+  <title></title>
+</head>
+<body>
+  <input type="button" value="ajax" id="ajaxBtn">
+  <div id="imageContainer">
+
+  </div>
+</body>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+  $("#ajaxBtn").click(function(){
+
+    $.ajax({
+      url:'http://localhost/ajaxTest',
+      data: {},
+      success:function(data){
+        console.log(data);
+        alert(data);
+      }
+    });
+
+    $.ajax({
+      url:'http://localhost/dog',
+      data: {},
+      success:function(data){
+        $("#imageContainer").html(data)
+      }
+    });
+
+  });
+</script>
+</html>

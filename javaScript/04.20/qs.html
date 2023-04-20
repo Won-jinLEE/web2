@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset = utf-8">
+  <title></title>
+</head>
+<body>
+  <input type="text" id="num1">
+  <input type="text" id="num2">
+  <input type="text" id="num3">
+  <input type="button" value="sum" id="sumBtn">
+  <input type="button" value="multiply" id="multiplyBtn">
+</body>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+  $("#sumBtn").click(function(){
+    let num1  = $("#num1").val();
+    let num2  = $("#num2").val();
+    let num3  = $("#num3").val();
+    $.ajax({
+      url:`http://localhost/qsSum?sumNum1=${num1}&sumNum2=${num2}&sumNum3=${num3}`,
+      data: {},
+      success:function(data){
+        console.log(`javascript에서 보냄 (SumAction): ${num1}+${num2}+${num3}=${data}`);
+        alert(`javascript에서 보냄 (SumAction): ${num1}+${num2}+${num3}=${data}`);
+      }
+    });
+  });
+  $("#multiplyBtn").click(function(){
+    let num1  = $("#num1").val();
+    let num2  = $("#num2").val();
+    let num3  = $("#num3").val();
+    $.ajax({
+      url:`http://localhost/qsMultiply?multiplyNum1=${num1}&multiplyNum2=${num2}&multiplyNum3=${num3}`,
+      data: {},
+      success:function(data){
+        console.log(`javascript에서 보냄 (MultiplyAction): ${num1}*${num2}*${num3}=${data}`);
+        alert(`javascript에서 보냄 (MultiplyAction): ${num1}*${num2}*${num3}=${data}`);
+      }
+    });
+  });
+</script>
+</html>

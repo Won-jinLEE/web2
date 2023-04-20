@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset = utf-8">
+  <title></title>
+</head>
+<body>
+  <input type="button" value="request1" id="ajaxBtn1">
+  <div id="imageContainer1"></div>
+  <br>
+  <input type="button" value="request2" id="ajaxBtn2">
+  <div id="imageContainer2"></div>
+  <br>
+  <input type="button" value="request3" id="ajaxBtn3">
+  <div id="imageContainer3"></div>
+</body>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+  $("#ajaxBtn1").click(function(){
+
+    $.ajax({
+      url:'http://localhost/request1',
+      data: {},
+      success:function(data){
+        console.log(data);
+        alert(data);
+      }
+    });
+    $.ajax({
+      url:'http://localhost/han',
+      data: {},
+      success:function(data){
+        $("#imageContainer1").html(data)
+      }
+    });
+
+  });
+  $("#ajaxBtn2").click(function(){
+
+    $.ajax({
+      url:'http://localhost/request2',
+      data: {},
+      success:function(data){
+        console.log(data);
+        alert(data);
+      }
+    });
+    $.ajax({
+      url:'http://localhost/jung',
+      data: {},
+      success:function(data){
+        $("#imageContainer2").html(data)
+      }
+    });
+
+  });
+  $("#ajaxBtn3").click(function(){
+
+    $.ajax({
+      url:'http://localhost/request3',
+      data: {},
+      success:function(data){
+        console.log(data);
+        alert(data);
+      }
+    });
+    $.ajax({
+      url:'http://localhost/il',
+      data: {},
+      success:function(data){
+        $("#imageContainer3").html(data)
+      }
+    });
+
+  });
+</script>
+</html>

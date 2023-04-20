@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset = utf-8">
+  <title></title>
+</head>
+<body>
+  <input type="text" id="num">
+  <input type="button" value="구매" id="sellBtn">
+</body>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+  $("#sellBtn").click(function(){
+    let num  = $("#num").val();
+    console.log(`낸 금액은 : ${num}원`);
+
+    $.ajax({
+      url:`http://localhost/sell?sellNum=${num}`,
+      data: {},
+      success:function(data){
+        console.log(data);
+        alert(data);
+      }
+    });
+
+    $.ajax({
+      url:`http://localhost/allsell?sellNum=${num}`,
+      data: {},
+      success:function(data){
+        console.log(data);
+        alert(data);
+      }
+    });
+
+  });
+
+</script>
+</html>
