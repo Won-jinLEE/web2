@@ -62,8 +62,8 @@ from PRACTICE_KEY_WORD_INFO; -- 키워드
 
 select *
 from PRACTICE_MST_INFO; -- 광고주
-
-SELECT DISTINCT A.ADV_CODE, --1번 문제
+--1번 문제 : 광고 아이디별 과금 금액
+SELECT DISTINCT A.ADV_CODE,
        B.ID,
        (SELECT SUM(CLICK_MONEY*CLICK)
         FROM PRACTICE_KEY_WORD_INFO
@@ -72,9 +72,18 @@ SELECT DISTINCT A.ADV_CODE, --1번 문제
 FROM PRACTICE_KEY_WORD_INFO A
 LEFT JOIN PRACTICE_ADV_INFO B
 ON A.ADV_CODE = B.ADV_CODE; 
-
-
-SELECT A.ID,               --3번 문제
+--2번 문제 : 아이디별 "광고종료일" 산출
+SELECT ADV_CODE,
+       ID,
+       to_date(ADD_WEEK) AS START_DAY,
+       to_number(LPAD(LPAD(PERIOD, 3,'0'), 2,'0')) AS PERIOD,
+       to_date(ADD_WEEK) + to_number(LPAD(LPAD(PERIOD, 3,'0'), 2,'0')) AS END_DAY,
+       CASE WHEN to_number(REPLACE(to_char(to_date(ADD_WEEK) + to_number(LPAD(LPAD(PERIOD, 3,'0'), 2,'0'))),'/')) < 230512 THEN '기간만료'
+            ELSE LPAD(to_char(to_date(ADD_WEEK) + to_number(LPAD(LPAD(PERIOD, 3,'0'), 2,'0'))),10, '20')
+       END AS CURRENT_STATUS
+FROM PRACTICE_ADV_INFO;
+--3번 문제 : kaifox의 담당자
+SELECT A.ID,
        A.ADV_MASTER,
        B.ADV_SHUTTLE
 FROM PRACTICE_ADV_INFO A
@@ -82,8 +91,61 @@ LEFT JOIN PRACTICE_MST_INFO B
 ON A.ADV_MASTER = B.ADV_MASTER
 WHERE 1=1
 AND ID IN ('kaifox');
-
-SELECT ADV_KEY_WORD,        --4번 문제
+--4번 문제 : 키워드별 클릭횟수
+SELECT ADV_KEY_WORD,
        SUM(CLICK)
 FROM PRACTICE_KEY_WORD_INFO
 GROUP BY ADV_KEY_WORD;
+--5번 문제 : 스금과 검색시 광고 정보와 URL
+SELECT A.ADV_CODE,
+       B.ID,
+       A.ADV_KEY_WORD,
+       B.ADV_ADDRESS,
+       B.ADV_INFO
+FROM PRACTICE_KEY_WORD_INFO A
+LEFT JOIN PRACTICE_ADV_INFO B
+ON A.ADV_CODE=B.ADV_CODE
+WHERE 1=1
+AND ADV_KEY_WORD IN ('스마트금융과');
+--6번 문제 : 가입만하고 광고 안한놈 출력
+SELECT *
+FROM PRACTICE_USER_INFO A
+LEFT JOIN PRACTICE_ADV_INFO B
+ON A.ID=B.ID
+WHERE 1=1
+AND ADV_INFO IS NULL;
+--7번 문제 : 사용자별 과금 평균
+SELECT ID,
+       AVG(CLICK_MONEY) AS AVG_GWAGM
+FROM PRACTICE_ADV_INFO A
+LEFT JOIN PRACTICE_KEY_WORD_INFO B
+ON A.ADV_CODE=B.ADV_CODE
+GROUP BY ID;
+--8번 문제 : 광고 최초 게시자를 포착하라
+select  rownum, A.*
+from (SELECT *
+      FROM PRACTICE_ADV_INFO
+      ORDER BY ADD_WEEK) A
+WHERE 1=1
+AND rownum = 1;
+
+--9번 문제 5월 12일자 기준 활성화된 키워드들의 노출수 내림차순으로
+SELECT A.ID, B.KEY_WORD_ID, to_date(ADD_WEEK) + to_number(LPAD(LPAD(PERIOD, 3,'0'), 2,'0')) AS END_DAY, B.IMPRESSIONS
+FROM PRACTICE_ADV_INFO A
+LEFT JOIN PRACTICE_KEY_WORD_INFO B
+ON A.ADV_CODE=B.ADV_CODE
+WHERE 1=1
+AND to_number(REPLACE(to_char(to_date(ADD_WEEK) + to_number(LPAD(LPAD(PERIOD, 3,'0'), 2,'0'))),'/')) > 230512
+ORDER BY B.IMPRESSIONS DESC;
+--10번 문제 광고주소별 HAITEAM 사용자의 키워드
+SELECT A.ADV_CODE,
+       A.ID,
+       A.ADV_ADDRESS,
+       A.ADV_MASTER,
+       B.ADV_KEY_WORD,
+       to_date(ADD_WEEK) + to_number(LPAD(LPAD(PERIOD, 3,'0'), 2,'0')) AS END_DAY
+FROM PRACTICE_ADV_INFO A
+LEFT JOIN PRACTICE_KEY_WORD_INFO B
+ON A.ADV_CODE = B.ADV_CODE
+WHERE 1=1
+AND A.ID IN ('haiteam');
