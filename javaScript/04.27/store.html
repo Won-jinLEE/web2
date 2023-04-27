@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset = utf-8">
+  <title></title>
+</head>
+<body>
+  <select id="car">
+    <option value="현대">현대</option>
+    <option value="기아">기아</option>
+    <option value="쌍용">쌍용</option>
+    <option value="벤츠">벤츠</option>
+    <option value="bmw">bmw</option>
+  </select>
+  <br>
+  <select id="color">
+    <option value="빨강">빨강</option>
+    <option value="파랑">파랑</option>
+    <option value="초록">초록</option>
+    <option value="노랑">노랑</option>
+    <option value="검정">검정</option>
+  </select>
+  <br>
+  <input type="button" value="구매" id="sellBtn">
+  <br>
+  <div id="dataPrint">
+  </div>
+</body>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+  $("#sellBtn").click(function(){
+    let car  = $("#car").val();
+    let color  = $("#color").val();
+    $.ajax({
+      url:`http://localhost/getCarPrice?car=${car}&color=${color}`,
+      data: {},
+      success:function(data){
+        alert(data);
+        console.log(data);
+        $("#dataPrint").html(data);
+      }
+    });
+  });
+</script>
+</html>
