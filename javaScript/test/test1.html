@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset = utf-8">
+  <title></title>
+</head>
+<body>
+   1  <input type="radio" name="firstRadio">
+   2  <input type="radio" name="firstRadio">
+   3  <input type="radio" name="firstRadio">
+   4  <input type="radio" name="firstRadio">
+   5  <input type="radio" name="firstRadio">
+   6  <input type="radio" name="firstRadio">
+   7  <input type="radio" name="firstRadio">
+   8  <input type="radio" name="firstRadio">
+   9  <input type="radio" name="firstRadio">
+  10  <input type="radio" name="firstRadio">
+  <br>
+  1  <input type="radio" name="secondRadio">
+  2  <input type="radio" name="secondRadio">
+  3  <input type="radio" name="secondRadio">
+  4  <input type="radio" name="secondRadio">
+  5  <input type="radio" name="secondRadio">
+  6  <input type="radio" name="secondRadio">
+  7  <input type="radio" name="secondRadio">
+  8  <input type="radio" name="secondRadio">
+  9  <input type="radio" name="secondRadio">
+ 10  <input type="radio" name="secondRadio">
+ <br>
+  1  <input type="radio" name="thirdRadio">
+  2  <input type="radio" name="thirdRadio">
+  3  <input type="radio" name="thirdRadio">
+  4  <input type="radio" name="thirdRadio">
+  5  <input type="radio" name="thirdRadio">
+  6  <input type="radio" name="thirdRadio">
+  7  <input type="radio" name="thirdRadio">
+  8  <input type="radio" name="thirdRadio">
+  9  <input type="radio" name="thirdRadio">
+ 10  <input type="radio" name="thirdRadio">
+ <br>
+ <input type="button" value="계산" id="radioCheckBtn">
+</body>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+  $("#radioCheckBtn").click(function() {
+    let radioBtns1 = $("[name='firstRadio']");;
+    let radioBtns2 = $("[name='secondRadio']");
+    let radioBtns3 = $("[name='thirdRadio']");
+
+
+    let firstValue = 0;
+    let secondValue = 0;
+    let thirdValue = 0;
+
+    for (let i = 0; i < radioBtns1.length; i++) {
+      if(radioBtns1[i].checked){
+        firstValue = i+1;
+      }
+    }
+
+    for (let i = 0; i < radioBtns2.length; i++) {
+      if(radioBtns2[i].checked){
+        secondValue = i+1;
+      }
+    }
+
+    for (let i = 0; i < radioBtns3.length; i++) {
+      if(radioBtns3[i].checked){
+        thirdValue = i+1;
+      }
+    }
+
+    let arr = [firstValue, secondValue, thirdValue];
+    arr.sort(function(a, b) {
+    return a - b;
+    });
+
+    console.log(Math.pow(arr[arr.length-1], arr[0]));
+
+  });
+</script>
+</html>

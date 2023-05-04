@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset = utf-8">
+  <title></title>
+</head>
+<body>
+  <div id="inputs"></div>
+  <input type="button" value="추가" id="addInputBtn">
+  <input type="button" value="계산" id="calculBtn">
+  <div id="sumValue"></div>
+</body>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+  let inputCount =0;
+  let sumValue = 0;
+  $("#addInputBtn").click(function() {
+    let newInput = $("<input>").attr("type", "text").attr("id", "input_" + inputCount);
+    $("#inputs").append(newInput);
+    $("<br>").appendTo(inputs);
+    inputCount = inputCount +1;
+  });
+
+  $("#calculBtn").click(function() {
+    for(let i =0; i<inputCount; i++){
+      sumValue = sumValue + Number($(`#input_${i}`).val());
+    }
+    $("#sumValue").html(sumValue);
+    sumValue = 0;
+  });
+</script>
+</html>

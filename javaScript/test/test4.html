@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset = utf-8">
+  <title></title>
+</head>
+<body>
+  국어<input type="text" id="kor">
+  <br>
+  영어<input type="text" id="eng">
+  <br>
+  수학<input type="text" id="math">
+  <br>
+  <input type="button" value="계산" id="calculBtn">
+  <br>
+  <div id="dataPrint">
+  </div>
+</body>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+  $("#calculBtn").click(function(){
+    let kor  = $("#kor").val();
+    let eng  = $("#eng").val();
+    let math  = $("#math").val();
+    $.ajax({
+      url:`http://localhost/rank?kor=${kor}&eng=${eng}&math=${math}`,
+      data: {},
+      success:function(data){
+         $("#dataPrint").append(data + "<br>");
+      }
+    });
+  });
+</script>
+</html>

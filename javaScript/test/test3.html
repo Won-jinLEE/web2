@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset = utf-8">
+  <title></title>
+</head>
+<body>
+  키(cm)<input type="text" id="tall">
+  <br>
+  몸무게(kg)<input type="text" id="weight">
+  <br>
+  <input type="button" value="계산" id="calculBtn">
+  <br>
+  <div id="dataPrint">
+  </div>
+</body>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+  $("#calculBtn").click(function(){
+    let tall  = $("#tall").val();
+    let weight  = $("#weight").val();
+    $.ajax({
+      url:`http://localhost/bmi?tall=${tall}&weight=${weight}`,
+      data: {},
+      success:function(data){
+        $("#dataPrint").html(data);
+      }
+    });
+  });
+</script>
+</html>
